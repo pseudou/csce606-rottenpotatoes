@@ -14,12 +14,36 @@
  *= require_self
  */
 
-.sort-indicator {
-    margin-left: 5px;
-    font-size: 0.8em;
-    transition: transform 0.2s ease;
+th a.current-sort {
+    background-color: #f0f0f0;
+    font-weight: bold;
 }
 
-.sort-indicator .desc {
-    transform: rotate(180deg);
+th a.current-sort.asc {
+    background-color: #e6f3ff; /* Light blue for ascending */
+}
+
+th a.current-sort.desc {
+    background-color: #fff0e6; /* Light orange for descending */
+}
+
+tbody td.sorted {
+    background-color: #f0f0f0; /* Match this color to th.current-sort */
+}
+
+/*!* Color all cells in the column *!*/
+/*td:nth-child(2), td:nth-child(4) {*/
+/*    background-color: #e6f3ff;*/
+/*}*/
+
+th a::after {
+    margin-left: 5px;
+}
+
+table th a.current-sort.asc::after {
+    content: "▲";
+}
+
+table th a.current-sort.desc::after {
+    content: "▼";
 }
