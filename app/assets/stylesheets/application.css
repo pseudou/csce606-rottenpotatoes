@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.sort-indicator {
+    margin-left: 5px;
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+}
+
+.sort-indicator .desc {
+    transform: rotate(180deg);
+}
