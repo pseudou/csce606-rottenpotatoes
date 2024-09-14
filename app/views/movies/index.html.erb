@@ -9,42 +9,9 @@
     <thead>
     <tr>
     <tr>
-      <th>
-        <%= link_to movies_path(sort: 'title', direction: (session[:direction] == 'asc' && session[:sort] == 'title' ? 'desc' : 'asc')) do %>
-          Title
-          <% if session[:sort] == 'title' %>
-            <% if session[:direction] == 'asc' %>
-              <span class="sort-indicator asc">▲</span>
-            <% else %>
-              <span class="sort-indicator desc">▼</span>
-            <% end %>
-          <% end %>
-        <% end %>
-      </th>
-      <th>
-        <%= link_to movies_path(sort: 'rating', direction: (session[:direction] == 'asc' && session[:sort] == 'rating' ? 'desc' : 'asc')) do %>
-          Rating
-          <% if session[:sort] == 'rating' %>
-            <% if session[:direction] == 'asc' %>
-              <span class="sort-indicator asc">▲</span>
-            <% else %>
-              <span class="sort-indicator desc">▼</span>
-            <% end %>
-          <% end %>
-        <% end %>
-      </th>
-      <th>
-        <%= link_to movies_path(sort: 'release_date', direction: (session[:direction] == 'asc' && session[:sort] == 'release_date' ? 'desc' : 'asc')) do %>
-          Release Date
-          <% if session[:sort] == 'release_date' %>
-            <% if session[:direction] == 'asc' %>
-              <span class="sort-indicator asc">▲</span>
-            <% else %>
-              <span class="sort-indicator desc">▼</span>
-            <% end %>
-          <% end %>
-        <% end %>
-      </th>
+      <th><%= sortable "title" %></th>
+      <th><%= sortable "rating" %></th>
+      <th><%= sortable "release_date", "release date" %></th>
       <th>Actions</th>
     </tr>
     </thead>

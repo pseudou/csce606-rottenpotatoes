@@ -12,6 +12,7 @@
 !/.env*.erb
 
 # Ignore all logfiles and tempfiles.
+/.idea/
 /log/*
 /tmp/*
 !/log/.keep

@@ -3,13 +3,14 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    session[:sort] = params[:sort] if params[:sort].present?
-    session[:direction] = params[:direction] if params[:direction].present?
 
-    sort_column = session[:sort] || 'title'
-    sort_direction = session[:direction] || 'asc'
+    @sort_column = sort_column
+    @sort_direction = sort_direction
 
-    @movies = Movie.order("#{sort_column} #{sort_direction}")
+    @movies = Movie.order("#{@sort_column} #{@sort_direction}")
+
+    cookies[:sort_column] = @sort_column
+    cookies[:sort_direction] = @sort_direction
   end
 
   # GET /movies/1 or /movies/1.json
@@ -65,6 +66,19 @@ class MoviesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def sort_column
+      %w[title rating description release_date].include?(params[:sort]) ? params[:sort] : cookies[:sort_column] || "title"
+    end
+    def sort_direction
+      if params[:direction] && %w[asc desc].include?(params[:direction])
+        params[:direction]
+      elsif cookies[:sort_direction] && %w[asc desc].include?(cookies[:sort_direction])
+        cookies[:sort_direction]
+      else
+        "asc"
+      end
+    end
+
     def set_movie
       @movie = Movie.find(params[:id])
     end

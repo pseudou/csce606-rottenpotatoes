@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby '3.3.5'
+ruby "3.3.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.1"
@@ -57,9 +57,9 @@ group :test do
 end
 
 group :production do
-  gem 'pg' # for Heroku deployment
+  gem "pg" # for Heroku deployment
 end
 
 group :development, :test do
-  gem 'sqlite3'
+  gem "sqlite3"
 end
