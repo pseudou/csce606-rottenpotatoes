@@ -1,10 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<div class="show-movie-container">
+  <% if notice.present? %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
 
-<%= render @movie %>
+  <h1><%= @movie.title %></h1>
 
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  <div class="movie-details">
+    <%= render @movie %>
+  </div>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
+  <div class="action-links">
+    <%= link_to "Edit this movie", edit_movie_path(@movie), class: "edit-link" %>
+    <%= link_to "Back to movies", movies_path, class: "back-link" %>
+    <%= button_to "Destroy this movie", @movie, method: :delete, class: "delete-button", data: { confirm: "Are you sure you want to delete this movie?" } %>
+  </div>
 </div>

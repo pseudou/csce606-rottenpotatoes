@@ -1,17 +1,14 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Movies" %>
 
 <h1>Movies</h1>
 
 <div id="movies">
-  <table>
+  <table class="movies-table">
     <thead>
     <tr>
-    <tr>
-      <th><%= sortable "title" %></th>
-      <th><%= sortable "rating" %></th>
-      <th><%= sortable "release_date", "release date" %></th>
+      <th class="sortable"><%= sortable "title" %></th>
+      <th class="sortable"><%= sortable "rating" %></th>
+      <th class="sortable"><%= sortable "release_date", "release date" %></th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -19,11 +16,11 @@
     <tbody>
     <% @movies.each do |movie| %>
       <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.rating %></td>
-        <td><%= movie.release_date.strftime('%d %B %Y') %></td>
+        <td><%= sorted_row "title" %><%= movie.title %></td>
+        <td><%= sorted_row "rating" %><%= movie.rating %></td>
+        <td><%= sorted_row "release_date" %><%= movie.release_date.strftime('%d %B %Y') %></td>
         <td>
-          <%= link_to "Show this movie", movie %>
+          <%= link_to "Show this movie", movie, class: "show-link" %>
         </td>
       </tr>
     <% end %>
@@ -32,7 +29,7 @@
     <tfoot>
     <tr>
       <td colspan="4">
-        <%= link_to "New movie", new_movie_path %>
+        <%= link_to "New movie", new_movie_path, class: "new-movie-link" %>
       </td>
     </tr>
     </tfoot>

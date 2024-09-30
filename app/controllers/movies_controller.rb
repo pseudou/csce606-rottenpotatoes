@@ -9,8 +9,8 @@ class MoviesController < ApplicationController
 
     @movies = Movie.order("#{@sort_column} #{@sort_direction}")
 
-    cookies[:sort_column] = @sort_column
-    cookies[:sort_direction] = @sort_direction
+    session[:sort_column] = @sort_column
+    session[:sort_direction] = @sort_direction
   end
 
   # GET /movies/1 or /movies/1.json
@@ -67,13 +67,13 @@ class MoviesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def sort_column
-      %w[title rating description release_date].include?(params[:sort]) ? params[:sort] : cookies[:sort_column] || "title"
+      %w[title rating description release_date].include?(params[:sort]) ? params[:sort] : session[:sort_column] || "title"
     end
     def sort_direction
       if params[:direction] && %w[asc desc].include?(params[:direction])
         params[:direction]
-      elsif cookies[:sort_direction] && %w[asc desc].include?(cookies[:sort_direction])
-        cookies[:sort_direction]
+      elsif session[:sort_direction] && %w[asc desc].include?(session[:sort_direction])
+        session[:sort_direction]
       else
         "asc"
       end
